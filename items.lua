@@ -1,12 +1,56 @@
-FenixElite.Items = {}
-FenixElite.Items.List = {}
-
-RegisterNetEvent("fenix:addItem", function (itemIndex)
-    table.insert(FenixElite.Items.List, itemIndex)
-
-    SendReactMessage("fenix:updateItems", FenixElite.Items.List)
-end)
-
-RegisterNUICallback('getAllBoughtItems', function(_, cb)
-    cb(FenixElite.Items.List)
-end)
+FenixItems = {
+    {label = "Dance moves", price = 5, dict = "custom@dancemoves", clip = "dancemoves", img = "https://cdn.discordapp.com/attachments/597182139129266177/1159137725094576209/Dance_Moves.mp4?ex=651ecaa1&is=651d7921&hm=513136c0b51a87a894ae4d96baa7569d193e06ee603ccc4da913d4040f03afe1&"},
+    {label = "Disco Dance", price = 15, dict = "custom@disco_dance", clip = "disco_dance", img = "https://cdn.discordapp.com/attachments/597182139129266177/1159137774453141524/Disco_Dance.mp4?ex=651ecaad&is=651d792d&hm=1d96c1b92e1043798533e823ad874e31a92f3553f9e9f490c74802109626581c&"},
+    {label = "Orange Justice", price = 15, dict = "custom@orangejustice", clip = "orangejustice", img = "https://cdn.discordapp.com/attachments/597182139129266177/1159137805348388955/Orange_Justice.mp4?ex=651ecab4&is=651d7934&hm=dc4ea77e2c72be91770cf1581e4f8698bc836b45655c7d3b2ab7f2aeed55a05c&"},
+    {label = "Smooth moves", price = 15, dict = "custom@smooth_moves", clip = "smooth_moves", img = "https://cdn.discordapp.com/attachments/597182139129266177/1159137857596833864/Smooth_Moves.mp4?ex=651ecac0&is=651d7940&hm=f3461374fa29d4693867be47412c207a36dcbf81289d9efbe0147acd9e1e1fec&"},
+    ------
+    {label = "Robot Dance", price = 15, dict = "custom@robotdance_fortnite", clip = "robotdance_fortnite", img = "https://cdn.discordapp.com/attachments/597182139129266177/1159137930225401987/Robot_Dance.mp4?ex=651ecad2&is=651d7952&hm=cfc0dc0003c4502279a41b542c169bb1f77ad7b0dc49fc85903fc8cad1e70c24&"},
+    {label = "Introducing...", price = 15, dict = "custom@introducing", clip = "introducing", img = "https://cdn.discordapp.com/attachments/597182139129266177/1159137959090593925/Introducing....mp4?ex=651ecad9&is=651d7959&hm=8287c50b92d59c1efadb3763f398df7af8d9acc1d1b8c295db1135985d6a33bc&"},
+    {label = "Salsa Time", price = 15, dict = "custom@salsatime", clip = "salsatime", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158453726227468319/Salsa_time.mkv?ex=651c4d9b&is=651afc1b&hm=b11f8be65aba2071fe927bd624bb1090d93348e67875ae9529664928c9051481&"},
+    {label = "Around the clock", price = 15, dict = "custom@around_the_clock", clip = "around_the_clock", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158453891369795655/Around_the_clock.mkv?ex=651c4dc2&is=651afc42&hm=5b6626788c1e5761ca30e1cd16663433643d209c1027287cf9d199fb3886ed61&"},
+    ------
+    {label = "Tootsie Slide", price = 15, dict = "custom@toosie_slide", clip = "toosie_slide", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158454037524525187/Tootsie_slide.mkv?ex=651c4de5&is=651afc65&hm=7ef8319918e7a60341177180ea6df79927e205d7fb346725c3cc2e3b94ea8ec8&"},
+    {label = "Electro Shuffle 2", price = 15, dict = "custom@electroshuffle", clip = "electroshuffle", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158448989046329455/Electro_Shuffle_2.mkv?ex=651c4931&is=651af7b1&hm=f8a8ef81abaee0af3d453108b5c33513d65121efe183e93714c8f4b1d8af9cde&"},
+    {label = "Hiphop Yeah", price = 15, dict = "custom@hiphop_yeah", clip = "hiphop_yeah", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158454302688424026/Hiphop_yeah.mkv?ex=651c4e24&is=651afca4&hm=d0bd7e130977f2d7f7921abc7baa535d3acde863a1767bc05591402e2cff21f0&"},
+    {label = "Dont Start", price = 15, dict = "custom@dont_start", clip = "dont_start", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158454655358083129/Dont_start.mkv?ex=651c4e78&is=651afcf8&hm=7424514219943a5d1c92185aa04e0a92dbf0d1c38222fa52ce893ea0f5c59bf6&"},
+    ------
+    {label = "HipHop 2", price = 25, dict = "custom@hiphop2", clip = "hiphop2", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158454839668379719/Hiphop_2.mkv?ex=651c4ea4&is=651afd24&hm=bb1408f7a8ef1ffc7ea9f362d829f7215ba2d062ab6a3a054bf3576cc54858d9&"},
+    {label = "Belly Dance 2", price = 25, dict = "custom@bellydance2", clip = "bellydance2", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158454968093773884/Belly_dance_2.mkv?ex=651c4ec3&is=651afd43&hm=4d2222d15129df015f9b13b08222ea78498f31c1600586db85d1fcf4ffc49fcd&"},
+    {label = "Hit It", price = 25, dict = "custom@hitit", clip = "hitit", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452764637147216/Hit_It.mkv?ex=651c4cb6&is=651afb36&hm=0567e96d0dbe947be9178af5ae4fdc543a5da9b9dab46b68d1d354e9d7e77ffa&"},
+    {label = "HipHop 1", price = 25, dict = "custom@hiphop1", clip = "hiphop1", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452755707461694/HipHop_1.mkv?ex=651c4cb3&is=651afb33&hm=f57057fb58cfac48f26288b81aa17a5e7570979d242d5374d28cad6dc6eb2396&"},
+    ------
+    {label = "Fright Funk", price = 25, dict = "custom@frightfunk", clip = "frightfunk", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452742336024636/Fright_Funk.mkv?ex=651c4cb0&is=651afb30&hm=769ed1b535f7641802c840cdf5590fea6214afebf3abd5cdcc2a86cabd540f17&"},
+    {label = "Savage", price = 25, dict = "custom@savage", clip = "savage", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452758878371900/Savage.mkv?ex=651c4cb4&is=651afb34&hm=966ca7cfe390299b3d967a69420623e50f97aa9c61a33a4c7cb3291b33d776c1&"},
+    {label = "Glyphic", price = 25, dict = "custom@gylphic", clip = "gylphic", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452730575208629/Glyphic.mkv?ex=651c4cad&is=651afb2d&hm=b0ce1d09ecb86d1edabda1349d0b182e0836d7f0a3e3ed457e60e018fea37332&"},
+    {label = "Say So", price = 25, dict = "custom@sayso", clip = "sayso", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452713785393242/Say_So.mkv?ex=651c4ca9&is=651afb29&hm=d04e85a8c3996fbdb37dce9e6a21aa35b209a4c54c3f7a3fb988d0404f98adf6&"},
+    ------
+    {label = "Rick Roll", price = 35, dict = "custom@rickroll", clip = "rickroll", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452698128060486/Rick_Roll.mkv?ex=651c4ca6&is=651afb26&hm=eaca7cd5d997ac2246c2fecc306fef4bb6cdbdfbfed8d623c84775720507e5e5&"},
+    {label = "Gangnamstyle", price = 35, dict = "custom@gangnamstyle", clip = "gangnamstyle", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452689546522786/Gagnamstyle.mkv?ex=651c4ca4&is=651afb24&hm=8f1792273cb10c98217a40ae707d5b4946748c7ed669fe7a36ed99bc15335de2&"},
+    {label = "HipHop Old", price = 35, dict = "custom@hiphop90s", clip = "hiphop90s", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452680180650047/HipHop_Old.mkv?ex=651c4ca1&is=651afb21&hm=9d8d6bb7a1e15fe823759a9cff61c8a1461a4869411b21973a19bc813af2cc22&"},
+    {label = "Electro Shuffle", price = 35, dict = "custom@electroshuffle_original", clip = "electroshuffle_original", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452244925128805/Electro_Shuffle.mkv?ex=651c4c3a&is=651afaba&hm=acf53a7d2de277b860a09d6fc96e77a18bf568b01bb4e5a12854f01bb076e86e&"},
+    ------
+    {label = "Cross bounce", price = 50, dict = "custom@crossbounce", clip = "crossbounce", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158452161630458056/Cross_Bouce.mkv?ex=651c4c26&is=651afaa6&hm=20e4faf7e6c5b57f6e0b7756b24aafd26d1ec946db15720e4682d4127e7ae29a&"},
+    {label = "HipHop 3", price = 50, dict = "custom@hiphop3", clip = "hiphop3", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158451939462357082/Hiphop_3.mkv?ex=651c4bf1&is=651afa71&hm=7d66c4a375dd4b8933a72714273c4dfb28eea9663a53bd3154eb1da08676c167&"},
+    {label = "Footwork", price = 50, dict = "custom@footwork", clip = "footwork", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158451864208154715/Footwork.mkv?ex=651c4bdf&is=651afa5f&hm=75e1a5273a18e48ce5961c69a5ee59a2c7d3c8864ec63f0ee84d5a271683127a&"},
+    {label = "HipHop Slide", price = 50, dict = "custom@hiphop_slide", clip = "hiphop_slide", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158451837423321158/HipHop_Slide.mkv?ex=651c4bd9&is=651afa59&hm=8a2c323a85e95f072a8de1de2ef519169d3662468e4a9b247666263ac6840d08&"},
+    ------
+    {label = "Salsa", price = 50, dict = "custom@salsa", clip = "salsa", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158451164568883200/Salsa.mkv?ex=651c4b38&is=651af9b8&hm=b7cc0a48f97d2ecac8eb78320ab48ef3e2988d8311e1f39dc0993884a840b949&"},
+    {label = "Toe twist", price = 50, dict = "custom@toetwist", clip = "toetwist", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158451115159982090/Toe_Twist.mkv?ex=651c4b2c&is=651af9ac&hm=c18bc40225a6762e254da9e8cd9fc4f29d2bdf7f32d9eacaf8100cad1d462aa9&"},
+    {label = "Floss", price = 50, dict = "custom@floss", clip = "floss", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158451055072391178/Floss.mkv?ex=651c4b1e&is=651af99e&hm=7103d6b169fa3518f599a7aa77a49b9fa2b3ab33e9de27cfe6b451221afbca70&"},
+    {label = "Gloss", price = 50, dict = "custom@gloss", clip = "gloss", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158450458399088710/Gloss.mkv?ex=651c4a90&is=651af910&hm=f3cca80a1044f6b97ba6ccb492ae75c6f07d87055d56652f6d04a52335bd6933&"},
+    ------
+    {label = "Special Dance", price = 50, dict = "custom@specialdance", clip = "specialdance", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158450416787394650/Special_Dance.mkv?ex=651c4a86&is=651af906&hm=eaaa6f53eca6411057c560026b699e618aa98a0b53354dd969828847ddcb29d3&"},
+    {label = "Shock Dance", price = 50, dict = "custom@shockdance", clip = "shockdance", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158450349431078953/Shock_Dance.mkv?ex=651c4a76&is=651af8f6&hm=56fcfa4911fb9550ffe802ab1da839bf3c4b3e5de709a5ef6563dad5c4297129&"},
+    {label = "Last Forever", price = 50, dict = "custom@last_forever", clip = "last_forever", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158449593823014953/Last_Forever.mkv?ex=651c49c2&is=651af842&hm=37a0b711dcfc94b39ef3d38f08d6776c27ecdbf9ec17dbf63a26c63e8d5ec4e0&"},
+    {label = "Hiphop Pumpup", price = 50, dict = "custom@hiphop_pumpup", clip = "hiphop_pumpup", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158449416424935504/Hiphop_Pumpup.mkv?ex=651c4997&is=651af817&hm=4b96b8d18c1a634dc7a7d097b7318df7d62909008740fb448600485a82771bd7&"},
+    ------
+    {label = "Headspin", price = 70, dict = "custom@headspin", clip = "headspin", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158449264880525322/Headspin.mkv?ex=651c4973&is=651af7f3&hm=6529e9b4e6c4cb95817bff9617ae62bf8dfbf1d0333b177f80498e56d2cb767b&"},
+    {label = "Samba", price = 70, dict = "custom@samba", clip = "samba", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158449223595999305/Samba.mkv?ex=651c4969&is=651af7e9&hm=1727d8cf09012920a52b06409b805f0aa62d8203d6062bce316872e04750fb82&"},
+    {label = "Maraschino", price = 70, dict = "custom@maraschino", clip = "maraschino", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158449157799936000/Maraschino.mkv?ex=651c495a&is=651af7da&hm=44a79209398050492fa93e11e442449b49ef4faf546631c29d480f7682011762&"},
+    {label = "In Da Party", price = 70, dict = "custom@in_da_party", clip = "in_da_party", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158449072273895584/In_Da_Party.mkv?ex=651c4945&is=651af7c5&hm=f212c15277d2a4a50123cb346b55781c94170216556e4ccf2342d8ac04f19dad&"},
+    ------
+    {label = "Renegade", price = 100, dict = "custom@renegade", clip = "renegade", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158448908251451502/Renegade.mkv?ex=651c491e&is=651af79e&hm=01dd5c9b1790eb2a838e88c91d8df3e89b79bed056cdf980f3cb6ed14ca15ec6&"},
+    {label = "Fresh", price = 100, dict = "custom@fresh_fortnite", clip = "fresh_fortnite", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158448838219145246/Fresh.mkv?ex=651c490d&is=651af78d&hm=27afaf0ed2caf4f735842397bf5a1e0c3e753febc30229da83f585e22252171f&"},
+    {label = "Makarena", price = 100, dict = "custom@makarena", clip = "makarena", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158448641351098510/Makarena.mkv"},
+    {label = "Take the L", price = 130, dict = "custom@take_l", clip = "take_l", img = "https://cdn.discordapp.com/attachments/970654319282102322/1158454202897531022/Take_the_L.mkv?ex=651c4e0d&is=651afc8d&hm=77e9a0d610102f1dc4bab198f1c6b9dbeed48a66c0a771c39751b49136bd6d92&"},
+}
